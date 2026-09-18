@@ -19,7 +19,7 @@ class DataController(BaseController):
         return True , ResponseSignal.FILE_VALIDATION_SUCCESS.value
 
 
-    def genereate_unique_file_name(self, orig_file_name : str , project_id : str):
+    def genereate_unique_filepath(self, orig_file_name : str , project_id : str):
 
         random_file_name = self.generate_random_string(length=12)
         project_path = ProjectController().get_project_path(project_id=project_id)
@@ -36,7 +36,7 @@ class DataController(BaseController):
                 random_file_name + "_" + new_file_name
             )
 
-        return new_file_path
+        return new_file_path, random_file_name + "_" + new_file_name
 
     def get_clean_file_name(self, orig_file_name : str):
         # Remove special characters except underscore and .
